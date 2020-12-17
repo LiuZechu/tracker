@@ -1,23 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Box, CardMedia, Typography, Button } from '@material-ui/core';
+import axios from 'axios';
+
 
 function App() {
+  const [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+
+  const fetchData = () => {
+    axios.get("http://api.open-notify.org/iss-now.json")
+      .then(res => {
+        setLongitude(res.data.iss_position.longitude);
+        setLatitude(res.data.iss_position.latitude);
+      });
+  }
+
+  const handleOnClick = () => {
+    fetchData();
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Box marginTop={10}/>
+      <Typography variant="h3">
+        International Space Station Tracking Centre
+      </Typography>
+      <Box marginTop={10}/>
+      <CardMedia style={{height: "20vw"}} image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/1200px-International_Space_Station_after_undocking_of_STS-132.jpg" />
+      <Box marginTop={10}/>
+      <Typography variant="h4">
+        The ISS is currently at Longitude {longitude} and Latitude {latitude}.
+      </Typography>
+      <Button variant="contained" color="primary" onClick={handleOnClick} style={{marginTop: "3vw"}}>
+        Refresh
+      </Button>
     </div>
   );
 }
