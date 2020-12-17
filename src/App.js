@@ -9,10 +9,10 @@ function App() {
   const [latitude, setLatitude] = useState(0);
 
   const fetchData = () => {
-    axios.get("http://api.open-notify.org/iss-now.json")
+    axios.get("https://api.wheretheiss.at/v1/satellites/25544")
       .then(res => {
-        setLongitude(res.data.iss_position.longitude);
-        setLatitude(res.data.iss_position.latitude);
+        setLongitude(res.data.longitude);
+        setLatitude(res.data.latitude);
       });
   }
 
