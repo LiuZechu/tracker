@@ -7,9 +7,10 @@ import axios from 'axios';
 function App() {
   const [longitude, setLongitude] = useState(0);
   const [latitude, setLatitude] = useState(0);
+  const apiLink = "https://api.wheretheiss.at/v1/satellites/25544";
 
   const fetchData = () => {
-    axios.get("https://api.wheretheiss.at/v1/satellites/25544")
+    axios.get(apiLink)
       .then(res => {
         setLongitude(res.data.longitude);
         setLatitude(res.data.latitude);
