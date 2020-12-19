@@ -1,0 +1,8 @@
+name = "my-worker"
+type = "webpack"
+account_id = "01a47895c868e7462c8f6580c3d66ec8"
+workers_dev = true
+
+[env.production]
+route = "www.trackers.ninja"
+zone_id = "4a711bb0bb706d65bde7b099b7c6ac16"
