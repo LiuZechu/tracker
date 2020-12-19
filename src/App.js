@@ -10,6 +10,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/home/:country' component={Home}/>
+          <Route component={Home}/>
         </Switch>
       </Router>
     </div>

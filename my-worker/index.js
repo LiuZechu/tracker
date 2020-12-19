@@ -7,7 +7,7 @@ addEventListener('fetch', event => {
  * @param {Request} request
  */
 async function handleRequest(request) {
-  // return new Response(request.cf.country, {
+  // return new Response("HELLO WORLD", {
   //   headers: { 'content-type': 'text/plain' },
   // })
 
@@ -24,10 +24,9 @@ async function handleRequest(request) {
       if (country === undefined) {
         country = "general";
       }
-      
+
       const URL = `https://trackers.ninja/home/${country}`
-  
-      // URL is set up to respond with dummy HTML
+
       let response = await fetch(URL, request)
     
       // Make the headers mutable by re-constructing the Response.
@@ -35,5 +34,4 @@ async function handleRequest(request) {
       response.headers.set("Foo", "Bar")
       return response
     }
-
 }
