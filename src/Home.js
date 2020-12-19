@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { Box, CardMedia, Typography, Button } from '@material-ui/core';
 import axios from 'axios';
 
 export default function Home(props) {
-    const country = props.match.params.country;
+    const availableCountries = ["SG", "US"];
+    const countryMap = {
+        "SG": "Singapore",
+        "US": "the United States"
+    }
+    const countryCode = props.match.params.country;
+    const country = countryMap[countryCode];
     const [longitude, setLongitude] = useState(0);
     const [latitude, setLatitude] = useState(0);
     const apiLink = "https://api.wheretheiss.at/v1/satellites/25544";
+    const history = useHistory();
   
     const fetchData = () => {
       axios.get(apiLink)
@@ -21,6 +29,11 @@ export default function Home(props) {
     }
   
     useEffect(() => {
+      if (!(availableCountries.includes(countryCode))) {
+          history.push('/error');
+          return;
+      }
+
       fetchData();
     }, [])
 
