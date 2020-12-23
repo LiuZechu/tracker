@@ -11,6 +11,7 @@ export default function Home(props) {
     }
     const countryCode = props.match.params.country;
     const country = countryMap[countryCode];
+    
     const [longitude, setLongitude] = useState(0);
     const [latitude, setLatitude] = useState(0);
     const apiLink = "https://api.wheretheiss.at/v1/satellites/25544";
@@ -42,7 +43,7 @@ export default function Home(props) {
         <div>
             <Box marginTop={10}/>
             <Typography variant="h3">
-                International Space Station Tracking Center
+                International Space Station (ISS) Tracking Center
             </Typography>
             <Box marginTop={10}/>
             <CardMedia style={{height: "20vw"}} image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/International_Space_Station_after_undocking_of_STS-132.jpg/1200px-International_Space_Station_after_undocking_of_STS-132.jpg" />
